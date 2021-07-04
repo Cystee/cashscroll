@@ -72,7 +72,7 @@ function preCode( $atts , $content = null ) {
 		$atts
 	);
 
-	return '<pre><code class="language:'.$language.'"></code></pre>'
+	return '<pre><code class="language:'.$language.'"></code></pre>';
 
 }
 add_shortcode( 'PreCode', 'preCode' );

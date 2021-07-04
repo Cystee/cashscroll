@@ -76,3 +76,5 @@ function preCode( $atts , $content = null ) {
 
 }
 add_shortcode( 'PreCode', 'preCode' );
+
+?>

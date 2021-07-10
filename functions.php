@@ -835,7 +835,7 @@ function add_prism()
 }
 add_action('wp_enqueue_scripts', 'add_prism');
 
-// Add Shortcode
+// Add Shortcode & debugging
 function preCode($attr, $content = null)
 {
 	// Attributes
@@ -871,4 +871,5 @@ function my_add_tinymce_button( $plugin_array ) {
      $plugin_array['my_button_script'] = get_bloginfo('template_directory') . "/editor.js";  //此处为wp当前使用的主题的根目录，若在其他位置请自行更改
      return $plugin_array;
 }
+
 ?>

@@ -852,4 +852,13 @@ function preCode($attr, $content = null)
 }
 add_shortcode('PreCode', 'preCode');
 
+//开启 WordPress 预览 webp 缩略图预览
+function mimvp_file_is_displayable_image($result, $path) {
+    $info = @getimagesize( $path );
+    if($info['mime'] == 'image/webp') {
+        $result = true;
+    }
+    return $result;
+}
+add_filter( 'file_is_displayable_image', 'mimvp_file_is_displayable_image', 10, 2 );
 ?>

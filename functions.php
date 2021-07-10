@@ -835,7 +835,7 @@ function add_prism()
 }
 add_action('wp_enqueue_scripts', 'add_prism');
 
-// Add Shortcode, debugging.
+// Add Shortcode
 function preCode($attr, $content = null)
 {
 	// Attributes
@@ -851,4 +851,24 @@ function preCode($attr, $content = null)
 	return '<pre><code class="language-' . $language . '">' . $content . '</code></pre>';
 }
 add_shortcode('PreCode', 'preCode');
+
+// 自定义按钮
+add_action( 'admin_init', 'my_tinymce_button' );
+
+function my_tinymce_button() {     //检查用户权限
+     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
+          add_filter( 'mce_buttons', 'my_register_tinymce_button' );
+          add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
+     }
+}
+// 在编辑器上注册新按钮
+function my_register_tinymce_button( $buttons ) {
+     array_push( $buttons, "button_eek", "button_green","button_MJ" );
+     return $buttons;
+}
+// 声明新按钮脚本
+function my_add_tinymce_button( $plugin_array ) {
+     $plugin_array['my_button_script'] = get_bloginfo('template_directory') . "/editor.js";  //此处为wp当前使用的主题的根目录，若在其他位置请自行更改
+     return $plugin_array;
+}
 ?>
